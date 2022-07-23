@@ -11,9 +11,9 @@
     },
     "devDependencies": {
         "axios": "^0.19",
-        "bootstrap": "^4.0.0",
+        "bootstrap": "^4.5.3",
         "cross-env": "^5.1",
-        "jquery": "^3.2",
+        "jquery": "^3.6.0",
         "laravel-mix": "^4.0.7",
         "lodash": "^4.17.13",
         "popper.js": "^1.12",
@@ -23,5 +23,8 @@
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.14"
     },
-    "dependencies": {}
+    "dependencies": {
+        "jquery-mask-plugin": "^1.14.16",
+        "select2": "^4.1.0-rc.0"
+    }
 }

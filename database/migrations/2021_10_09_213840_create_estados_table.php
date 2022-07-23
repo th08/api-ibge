@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClientesTable extends Migration
+class CreateEstadosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateClientesTable extends Migration
      */
     public function up()
     {
-        Schema::create('clientes', function (Blueprint $table) {
+        Schema::create('estados', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('estado_id')->unsigned();
-            $table->foreign('estado_id')->references('id')->on('estados')->onDelete('cascade')->onUpdate('cascade'); 
-            $table->string('nome');
-            $table->string('email');
-            $table->string('cidade');
+            $table->string('nomeEstado');
+            $table->string('siglaEstado');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateClientesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clientes');
+        Schema::dropIfExists('estados');
     }
 }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Document</title>
 </head>
 <body>
@@ -18,46 +18,10 @@
 
 
     <script src="{{asset('js/app.js')}}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script>
-        loadStates();
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{asset('js/functions.js')}}"></script>
+    
 
-        function loadStates(){
-            let idState;
-            $.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados', function(response){       
-                if(response !== '' ){
-                    
-                    $('#select-state option:not(:selected)').remove();
-                    $('#select-city option:not(:selected)').remove();
-                    
-                    $.each(response, ((index, item) => {
-                        
-                        let opt =  `<option value="${item.nome}" data-estado="${item.id}" class="option">${item.nome}</option>`
-                        $('#select-state').append(opt);
-                    }));
-                    
-                    idState = ($('#select-state :selected').data('estado'));
-                    
-                    $.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${idState}/distritos`, function(cidade){
-                        if(cidade !== '' ){
-                            $.each(cidade, ((index, item) => {
-                                let optCity =  `<option value="${item.nome}" data-city="${item.id}" class="option">${item.nome}</option>`
-                                $('#select-city').append(optCity);
-                            }));
-                        }
-                    })
-                    
-                }
-            })
-        }
-
-        $('#select-state').select2();
-        $('#select-city').select2();
-
-        $('#select-state').on('change', e => {
-            loadStates();
-            $('#select-city').val('');
-        });
-    </script>
 </body>
 </html>

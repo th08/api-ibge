@@ -5,16 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ClienteRequest;
 use App\Cliente;
+use App\Estado;
+use Illuminate\Support\Facades\DB;
 
 class ClienteController extends Controller
 {
     public function index(){
-        $registro = Cliente::all();
+        $registro = DB::table('clientes')
+        ->join('estados', 'estados.id', 'clientes.estado_id')
+        ->select('clientes.id','clientes.nome','clientes.email','estados.nomeEstado','clientes.cidade')->get();
         return view('index', compact('registro'));
+        
     }
 
     public function adicionar(){
-        return view('adicionar');
+        $estados = Estado::all();
+        return view('adicionar',compact('estados'));
     }
 
     public function salvar(ClienteRequest $req){
@@ -26,7 +32,8 @@ class ClienteController extends Controller
 
     public function editar($id){
         $registro = Cliente::find($id);
-        return view('editar',compact('registro'));
+        $estados = Estado::all();
+        return view('editar',compact('estados', 'registro'));
     }
 
     public function atualizar(ClienteRequest $req, $id){

@@ -18,7 +18,7 @@
                     <tr class="text-center">
                       <th scope="row">{{$reg->nome}}</th>
                       <td>{{$reg->email}}</td>
-                      <td>{{$reg->estado}}</td>
+                      <td>{{$reg->nomeEstado}}</td>
                       <td>{{$reg->cidade}}</td>
                       <td>
                           <a href="{{route('editar', $reg->id)}}" class="btn btn-primary">Editar</a>
