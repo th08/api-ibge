@@ -11,7 +11,7 @@
     <div class="col-6">
 
         <div class="form-group">
-            <label for="">Email</label>
+            <label for="">Email: </label>
             <input type="email" name="email" id="" class="form-control" value="{{isset($registro->email) ? $registro->email:old('email')}}">
         </div>
 
